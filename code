@@ -1,0 +1,53 @@
+import requests
+import sys
+import os
+
+def banner():
+    print("\n" + "="*30)
+    print(" " * 10 + "MULLTOR")
+    print("="*30 + "\n")
+
+def ip_checker():
+    ip = input("Введите IP адрес: ")
+    response = requests.get(f"http://ip-api.com/json/{ip}")
+    data = response.json()
+    print(f"\nСтрана: {data['country']}")
+    print(f"Город: {data['city']}")
+    print(f"Айпи: {data['query']}")
+    print(f"Координаты: {data['lat']}, {data['lon']}")
+    print(f"Интернет провайдер: {data['isp']}")
+    print(f"Примерное местоположение: {data['regionName']}, {data['zip']}\n")
+
+def wifi_checker():
+    ip = input("Введите IP адрес: ")
+    # Примерный вывод, так как реальная проверка Wi-Fi сетей требует дополнительных данных и прав
+    print("\nНазвание сети | Айпи | Провайдер | Количество подключенных устройств")
+    print("ExampleWiFi | 192.168.1.1 | ExampleISP | 5\n")
+
+def developer_info():
+    print("\nDeveloper telegram - @zllwof")
+    print("Телеграмм создателя - @zllwof\n")
+
+def main():
+    while True:
+        banner()
+        print("1. Ip Checker")
+        print("2. Checker Wi-Fi")
+        print("3. Developer")
+        print("4. Exit")
+        choice = input("Выберите опцию: ")
+
+        if choice == '1':
+            ip_checker()
+        elif choice == '2':
+            wifi_checker()
+        elif choice == '3':
+            developer_info()
+        elif choice == '4':
+            print("Выход из программы...")
+            sys.exit()
+        else:
+            print("Неверный выбор, попробуйте снова.")
+
+if __name__ == "__main__":
+    main()
